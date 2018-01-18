@@ -100,24 +100,25 @@ public class GridMove2 : MonoBehaviour {
                 transform.position = Vector3.Lerp(transform.position, newPos, t);
                 yield return new WaitForSeconds(0);
             }
-            //transform.Translate(Vector3.forward * cellSize);
+            transform.position = newPos;
         }
         isMoving = false;
     }
 
     IEnumerator MoveBackward()
     {
+        isMoving = true;
         Vector3 newPos = transform.position + transform.TransformDirection(Vector3.forward * -cellSize);
         Collider[] hitColliders = Physics.OverlapSphere(newPos, 0.1f);
         if (hitColliders.Length == 0)
         {
-            isMoving = true;
             walkingSound.Play();
             for (float t = 0f; t < 1f; t += Time.deltaTime * (WalkSpeed / cellSize))
             {
                 transform.position = Vector3.Lerp(transform.position, newPos, t);
                 yield return new WaitForSeconds(0);
             }
+            transform.position = newPos;
         }
         isMoving = false;
     }
@@ -134,7 +135,7 @@ public class GridMove2 : MonoBehaviour {
             transform.rotation = Quaternion.Slerp(oldRotation, NewRotation, t);
             yield return new WaitForSeconds(0);
         }
-        //transform.rotation = NewRotation;
+        transform.rotation = NewRotation;
         isMoving = false;
     }
 
@@ -150,8 +151,7 @@ public class GridMove2 : MonoBehaviour {
             transform.rotation = Quaternion.Slerp(oldRotation, NewRotation, t);
             yield return new WaitForSeconds(0);
         }
-        //transform.rotation = NewRotation;
-        //transform.Rotate(0, 90, 0);
+        transform.rotation = NewRotation;
         isMoving = false;
     }
 }

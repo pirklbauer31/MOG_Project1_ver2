@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -17,6 +18,8 @@ public class Sword : MonoBehaviour
         coll = GetComponent<CapsuleCollider>();
         swordHitSound = GetComponent<AudioSource>();
         anim = GetComponent<Animator>();
+        coll.enabled = false;
+        anim.su
     }
 
     // Update is called once per frame
@@ -71,10 +74,16 @@ public class Sword : MonoBehaviour
         }
     }
 
+    public void setColliderState(bool state)
+    {
+            coll.enabled = state;
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         swordHitSound.Play();
         Destroy(other.gameObject);
         print("Collision!");
+        coll.enabled = false;
     }
 }
