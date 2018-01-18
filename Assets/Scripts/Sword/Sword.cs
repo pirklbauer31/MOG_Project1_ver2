@@ -19,7 +19,6 @@ public class Sword : MonoBehaviour
         swordHitSound = GetComponent<AudioSource>();
         anim = GetComponent<Animator>();
         coll.enabled = false;
-        anim.su
     }
 
     // Update is called once per frame
@@ -74,10 +73,11 @@ public class Sword : MonoBehaviour
         }
     }
 
-    public void setColliderState(bool state)
+    public void setColliderState(int state)
     {
-            coll.enabled = state;
+            coll.enabled = (state==1);
     }
+
 
     private void OnTriggerEnter(Collider other)
     {
