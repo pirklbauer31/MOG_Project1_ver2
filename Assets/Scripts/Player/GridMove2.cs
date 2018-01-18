@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class GridMove2 : MonoBehaviour {
 
     private bool isMoving = false;
-    private int cellSize = 1;
+    private float cellSize = 0.9f;
     public float WalkSpeed = 5.0f;
     public float TurnSpeed = 3.5f;
     private AudioSource walkingSound;
@@ -15,6 +15,10 @@ public class GridMove2 : MonoBehaviour {
     void Start()
     {
         walkingSound = GetComponent<AudioSource>();
+    }
+
+    public void movementLock(int state) {
+        isMoving = (state == 1);
     }
 
     public void doMovement(string control)
@@ -68,25 +72,6 @@ public class GridMove2 : MonoBehaviour {
         }
 
     }
-
-    /*public void OnGUI()
-    {
-        if (GUI.Button(new Rect(120, 50, 100, 30), "For"))
-
-            StartCoroutine(MoveForward()); ;
-
-        if (GUI.Button(new Rect(10, 90, 100, 30), "Turn Left"))
-
-            StartCoroutine(RotateLeft());
-
-        if (GUI.Button(new Rect(120, 90, 100, 30), "Back"))
-
-            StartCoroutine(MoveBackward());
-
-        if (GUI.Button(new Rect(230, 90, 100, 30), "Turn Right"))
-            StartCoroutine(RotateRight());
-
-    }*/
 
     IEnumerator MoveForward()
     {

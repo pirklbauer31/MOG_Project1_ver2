@@ -28,6 +28,8 @@ public class Sword : MonoBehaviour
         {
             print("Left click!");
             anim.SetTrigger("TopDownAttack");
+            //anim.SetTrigger("FrontalAttack");
+            //anim.SetTrigger("SideAttack");
 
         }
         foreach (Touch touch in Input.touches)
@@ -42,22 +44,26 @@ public class Sword : MonoBehaviour
             {
                 fingerEnd = touch.position;
 
-                if ((fingerStart.x - fingerEnd.x) > 80) // Side to side Swipe
+                if ((fingerStart.x - fingerEnd.x) > 80) // right to left Swipe
                 {
                     print("right to left swipe");
+                    anim.SetTrigger("SideAttack");
                 }
-                else if ((fingerStart.x - fingerEnd.x) < -80) // Side to side Swipe
+                else if ((fingerStart.x - fingerEnd.x) < -80) // left to right Swipe
                 {
                     print("left to right swipe");
+                    //anim.SetTrigger("FrontalAttack");
                 }
                 else if ((fingerStart.y - fingerEnd.y) < -80) // top to bottom swipe
                 {
                     print("Top to bottom swipe");
+                    anim.SetTrigger("TopDownAttack");
 
                 }
-                else if ((fingerStart.y - fingerEnd.y) > 80) // top to bottom swipe
+                else if ((fingerStart.y - fingerEnd.y) > 80) // bottom to top swipe
                 {
                     print("Bottom to up swippe");
+                    anim.SetTrigger("FrontalAttack");
 
                 }
 
