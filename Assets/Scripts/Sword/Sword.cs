@@ -88,8 +88,13 @@ public class Sword : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         swordHitSound.Play();
-        Destroy(other.gameObject);
+        //Destroy(other.gameObject);
         print("Collision!");
-        coll.enabled = false;
+        if (other.gameObject.GetComponent<IEnemyHitable>() != null)
+        {
+            coll.enabled = false;
+            other.gameObject.SendMessage("OnGetHitByPlayerMelee", 5);
+        }
+        
     }
 }
