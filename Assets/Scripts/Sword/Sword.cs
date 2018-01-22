@@ -24,6 +24,7 @@ public class Sword : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         if (Input.GetMouseButton(0))
         {
             print("Left click!");
@@ -31,7 +32,7 @@ public class Sword : MonoBehaviour
             //anim.SetTrigger("FrontalAttack");
             //anim.SetTrigger("SideAttack");
 
-        }
+        } 
         foreach (Touch touch in Input.touches)
         {
 
