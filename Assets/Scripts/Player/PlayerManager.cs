@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerManager : MonoBehaviour {
 
     public bool hasGoldKey = false;
+    public bool hasSilverKey = false;
 
 	// Use this for initialization
 	void Start () {
@@ -25,6 +26,12 @@ public class PlayerManager : MonoBehaviour {
             hasGoldKey = true;
             Destroy(other.gameObject);
             print("Gold Key picked up!");
+        }
+        if (other.gameObject.CompareTag("SilverKey"))
+        {
+            hasSilverKey = true;
+            Destroy(other.gameObject);
+            print("Silver Key picked up!");
         }
 
     }
