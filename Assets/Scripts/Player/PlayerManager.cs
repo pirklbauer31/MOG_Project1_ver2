@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerManager : MonoBehaviour {
 
-    private bool hasGoldKey = false;
+    public bool hasGoldKey = false;
 
 	// Use this for initialization
 	void Start () {
@@ -18,10 +18,13 @@ public class PlayerManager : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
+        print("Collision with Player");
         //Pick up gold key
         if (other.gameObject.CompareTag("GoldKey"))
         {
+            hasGoldKey = true;
             Destroy(other.gameObject);
+            print("Gold Key picked up!");
         }
 
     }
