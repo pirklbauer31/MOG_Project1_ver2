@@ -16,7 +16,7 @@ public class Ogre_Gold : MonoBehaviour, IEnemyHitable {
 		
 	}
 
-    public void OnGetHitByPlayerMelee (float hitValue)
+    public void OnGetHit (HitType t)
     {
         Destroy(gameObject);
         keyToSpawn.SetActive(true);
