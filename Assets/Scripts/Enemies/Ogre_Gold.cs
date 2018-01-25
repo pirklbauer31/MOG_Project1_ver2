@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Ogre_Gold : MonoBehaviour, IEnemyHitable {
 
+    public GameObject keyToSpawn;
+
 	// Use this for initialization
 	void Start () {
 		
@@ -17,5 +19,6 @@ public class Ogre_Gold : MonoBehaviour, IEnemyHitable {
     public void OnGetHitByPlayerMelee (float hitValue)
     {
         Destroy(gameObject);
+        keyToSpawn.SetActive(true);
     }
 }
