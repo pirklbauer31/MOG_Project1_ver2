@@ -13,6 +13,7 @@ public class Sword : MonoBehaviour
     Animator anim;
     public int Strength = 10;
     private bool isHitting;
+    private HitType hitType;
 
     // Use this for initialization
     void Start()
@@ -22,6 +23,7 @@ public class Sword : MonoBehaviour
         anim = GetComponent<Animator>();
         coll.enabled = false;
         isHitting = false;
+        hitType = new HitType(HitType.DefaultHit, Strength);
     }
 
     // Update is called once per frame
@@ -32,11 +34,20 @@ public class Sword : MonoBehaviour
         if (Input.GetMouseButton(0))
         {
             print("Left click!");
+            hitType = new HitType(HitType.TopDownHit, Strength);
             anim.SetTrigger("TopDownAttack");
-            //anim.SetTrigger("FrontalAttack");
-            //anim.SetTrigger("SideAttack");
 
-        } 
+            //hitType = new HitType(HitType.LeftSideHit, Strength);
+            //anim.SetTrigger("LeftSideAttack");
+
+            //hitType = new HitType(HitType.FrontalHit, Strength);
+            //anim.SetTrigger("FrontalAttack");
+
+            //hitType = new HitType(HitType.RightSideHit, Strength);
+            //anim.SetTrigger("RightSideAttack");
+
+
+        }
         foreach (Touch touch in Input.touches)
         {
             if (touch.phase == TouchPhase.Began)
@@ -51,22 +62,27 @@ public class Sword : MonoBehaviour
                 if ((fingerStart.x - fingerEnd.x) > 80) // right to left Swipe
                 {
                     print("right to left swipe");
-                    anim.SetTrigger("SideAttack");
+                    hitType = new HitType(HitType.RightSideHit, Strength);
+                    anim.SetTrigger("RightSideAttack");
                 }
                 else if ((fingerStart.x - fingerEnd.x) < -80) // left to right Swipe
                 {
                     print("left to right swipe");
+                    hitType = new HitType(HitType.LeftSideHit, Strength);
+                    anim.SetTrigger("LeftSideAttack");
                     //anim.SetTrigger("FrontalAttack");
                 }
                 else if ((fingerStart.y - fingerEnd.y) < -80) // bottom to top swipe
                 {
                     print("Top to bottom swipe");
+                    hitType = new HitType(HitType.FrontalHit, Strength);
                     anim.SetTrigger("FrontalAttack");
 
                 }
                 else if ((fingerStart.y - fingerEnd.y) > 80) // top to bottom swipe
                 {
                     print("Bottom to up swippe");
+                    hitType = new HitType(HitType.TopDownHit, Strength);
                     anim.SetTrigger("TopDownAttack");
 
                 }
@@ -101,7 +117,7 @@ public class Sword : MonoBehaviour
         if (other.gameObject.GetComponent<IEnemyHitable>() != null)
         {
             coll.enabled = false;
-            other.gameObject.SendMessage("OnGetHit", new HitType(HitType.frontalHit,Strength));
+            other.gameObject.SendMessage("OnGetHit", hitType);
         }
         
     }

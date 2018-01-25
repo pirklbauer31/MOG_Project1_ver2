@@ -5,5 +5,6 @@ using UnityEngine;
 public interface IEnemyHitable {
 
     void OnGetHit (HitType type);
+    void Die();
 
 }

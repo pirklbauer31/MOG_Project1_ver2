@@ -18,6 +18,11 @@ public class Ogre_Gold : MonoBehaviour, IEnemyHitable {
 
     public void OnGetHit (HitType t)
     {
+        Die();
+    }
+
+    public void Die()
+    {
         Destroy(gameObject);
         keyToSpawn.SetActive(true);
     }

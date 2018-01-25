@@ -1,8 +1,10 @@
 ﻿public class HitType
 {
-    public const string topDownHit = "topDownHit";
-    public const string frontalHit = "frontalHit";
-    public const string sideHit = "sideHit";
+    public const string TopDownHit = "TopDownHit";
+    public const string FrontalHit = "FrontalHit";
+    public const string LeftSideHit = "LeftSideHit";
+    public const string RightSideHit = "RightSideHit";
+    public const string DefaultHit = "DefaultHit";
 
     public string Hit { get; private set; }
     public int Strength { get; private set; }
