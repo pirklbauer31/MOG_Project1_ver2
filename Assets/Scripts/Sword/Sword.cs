@@ -55,16 +55,16 @@ public class Sword : MonoBehaviour
                     print("left to right swipe");
                     //anim.SetTrigger("FrontalAttack");
                 }
-                else if ((fingerStart.y - fingerEnd.y) < -80) // top to bottom swipe
+                else if ((fingerStart.y - fingerEnd.y) < -80) // bottom to top swipe
                 {
                     print("Top to bottom swipe");
-                    anim.SetTrigger("TopDownAttack");
+                    anim.SetTrigger("FrontalAttack");
 
                 }
-                else if ((fingerStart.y - fingerEnd.y) > 80) // bottom to top swipe
+                else if ((fingerStart.y - fingerEnd.y) > 80) // top to bottom swipe
                 {
                     print("Bottom to up swippe");
-                    anim.SetTrigger("FrontalAttack");
+                    anim.SetTrigger("TopDownAttack");
 
                 }
 
