@@ -11,6 +11,7 @@ public class Sword : MonoBehaviour
     private Vector2 fingerStart;
     private Vector2 fingerEnd;
     Animator anim;
+    private bool isHitting;
 
     // Use this for initialization
     void Start()
@@ -19,12 +20,14 @@ public class Sword : MonoBehaviour
         swordHitSound = GetComponent<AudioSource>();
         anim = GetComponent<Animator>();
         coll.enabled = false;
+        isHitting = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (isHitting)
+            return;
         if (Input.GetMouseButton(0))
         {
             print("Left click!");
@@ -35,7 +38,6 @@ public class Sword : MonoBehaviour
         } 
         foreach (Touch touch in Input.touches)
         {
-
             if (touch.phase == TouchPhase.Began)
             {
                 fingerStart = touch.position;
@@ -80,9 +82,13 @@ public class Sword : MonoBehaviour
         }
     }
 
-    public void setColliderState(int state)
+    public void SetColliderState(int state)
     {
             coll.enabled = (state==1);
+    }
+    public void SetAnimationState(int state)
+    {
+        isHitting = (state == 1);
     }
 
 
