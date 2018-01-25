@@ -27,7 +27,7 @@ public class PlayerManager : MonoBehaviour {
             Destroy(other.gameObject);
             print("Gold Key picked up!");
         }
-        if (other.gameObject.CompareTag("SilverKey"))
+        else if (other.gameObject.CompareTag("SilverKey"))
         {
             hasSilverKey = true;
             Destroy(other.gameObject);
