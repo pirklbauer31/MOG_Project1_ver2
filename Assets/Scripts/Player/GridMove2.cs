@@ -139,4 +139,5 @@ public class GridMove2 : MonoBehaviour {
         transform.rotation = NewRotation;
         isMoving = false;
     }
+
 }
