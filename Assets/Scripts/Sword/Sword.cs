@@ -11,6 +11,7 @@ public class Sword : MonoBehaviour
     private Vector2 fingerStart;
     private Vector2 fingerEnd;
     Animator anim;
+    public int Strength = 10;
     private bool isHitting;
 
     // Use this for initialization
@@ -100,7 +101,7 @@ public class Sword : MonoBehaviour
         if (other.gameObject.GetComponent<IEnemyHitable>() != null)
         {
             coll.enabled = false;
-            other.gameObject.SendMessage("OnGetHitByPlayerMelee", 5);
+            other.gameObject.SendMessage("OnGetHit", new HitType(HitType.frontalHit,Strength));
         }
         
     }

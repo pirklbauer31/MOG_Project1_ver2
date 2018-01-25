@@ -4,6 +4,6 @@ using UnityEngine;
 
 public interface IEnemyHitable {
 
-    void OnGetHitByPlayerMelee (float hitValue);
+    void OnGetHit (HitType type);
 
 }

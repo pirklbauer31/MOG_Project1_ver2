@@ -2,20 +2,31 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Goblin : MonoBehaviour, IEnemyHitable {
+public class Goblin : MonoBehaviour, IEnemyHitable
+{
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    public const int STRENGTH = 5;
+    public const int DEFFENSE = 50;
+    public int Health = 100;
 
-    public void OnGetHitByPlayerMelee(float hitValue)
+    // Use this for initialization
+    void Start()
+    {
+
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
+    }
+
+    public void OnGetHit(HitType type)
     {
         Destroy(gameObject);
+    }
+
+    private void processHitDamage(HitType t)
+    {
     }
 }
