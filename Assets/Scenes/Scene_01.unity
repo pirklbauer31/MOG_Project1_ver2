@@ -827,7 +827,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh15986
+  m_Name: pb_Mesh16190
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -4987,7 +4987,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh36072
+  m_Name: pb_Mesh15688
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -9802,6 +9802,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d4a2c2c82d2bf547922ac116843ca2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Strength: 10
 --- !u!82 &528403561
 AudioSource:
   m_ObjectHideFlags: 0
@@ -10752,7 +10753,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400006, guid: 4f13c956f2c771542a07a197a4d6fdf5, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 24.178558
+      value: 24.17856
       objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: 4f13c956f2c771542a07a197a4d6fdf5, type: 2}
       propertyPath: m_LocalPosition.y
@@ -10805,6 +10806,27 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 400006, guid: 4f13c956f2c771542a07a197a4d6fdf5, type: 2}
   m_PrefabInternal: {fileID: 606838895}
+--- !u!1 &606838897 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 100006, guid: 4f13c956f2c771542a07a197a4d6fdf5, type: 2}
+  m_PrefabInternal: {fileID: 606838895}
+--- !u!95 &606838898
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 606838897}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 6323ce4e63a875447825221d0f4ff93e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!43 &630155942
 Mesh:
   m_ObjectHideFlags: 0
@@ -11725,7 +11747,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh35784
+  m_Name: pb_Mesh15382
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -15321,6 +15343,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13c7bc824cfbfb646a495dcba8c5e378, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Health: 100
 --- !u!4 &778829781 stripped
 Transform:
   m_PrefabParentObject: {fileID: 465622, guid: b7f1dfc4e01f4a645a02f3816571583e, type: 2}
@@ -35469,6 +35492,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13c7bc824cfbfb646a495dcba8c5e378, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Health: 100
 --- !u!65 &1595655828
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -43948,6 +43972,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13c7bc824cfbfb646a495dcba8c5e378, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Health: 100
 --- !u!65 &2014565051
 BoxCollider:
   m_ObjectHideFlags: 0
