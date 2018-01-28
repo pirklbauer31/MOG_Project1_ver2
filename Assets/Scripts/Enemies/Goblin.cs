@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class Goblin : MonoBehaviour, IEnemyHitable
 {
+    private Animator animator;
+    private AudioSource[] goblinSounds;
+    private AudioSource deathSound;
 
     public int Strength=5;
     public int Defense=7;
@@ -21,7 +24,9 @@ public class Goblin : MonoBehaviour, IEnemyHitable
     // Use this for initialization
     void Start()
     {
-
+        animator = GetComponent<Animator>();
+        goblinSounds = GetComponents<AudioSource>();
+        deathSound = goblinSounds[0];
     }
 
     // Update is called once per frame
@@ -63,12 +68,27 @@ public class Goblin : MonoBehaviour, IEnemyHitable
                 break;
         }
         if(hasHit)
-        Health = Health - criticalBonus * damage *(t.Strength / Defense);
+        {
+            Health = Health - criticalBonus * damage * (t.Strength / Defense);
+            //animator.SetTrigger("damage");
+            hasHit = false;
+        }
+       
     }
 
     public void Die()
     {
-        Destroy(gameObject);
+        deathSound.Play();
+        animator.SetTrigger("dead");
+        //Destroy(gameObject);
         Console.WriteLine("Goblin died");
+    }
+
+    public void DeathAnimationFinished (int state)
+    {
+        if (state == 1)
+        {
+            Destroy(gameObject);
+        }
     }
 }

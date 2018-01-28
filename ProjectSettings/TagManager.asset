@@ -6,6 +6,7 @@ TagManager:
   tags:
   - GoldKey
   - SilverKey
+  - SilverDoor
   layers:
   - Default
   - TransparentFX
