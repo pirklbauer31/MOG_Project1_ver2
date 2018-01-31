@@ -6,15 +6,14 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour {
 
     public GameObject endText;
+    public GameObject deadText;
     public GameObject Player;
 
-    private bool levelFinished;
     private GridMove2 movement;
     private GameObject[] playerUI;
 
 	// Use this for initialization
 	void Start () {
-        levelFinished = false;
         movement = Player.GetComponent<GridMove2>();
         playerUI = GameObject.FindGameObjectsWithTag("PlayerUI");
 
@@ -28,13 +27,24 @@ public class GameManager : MonoBehaviour {
     public void LevelFinished()
     {
         endText.SetActive(true);
-        levelFinished = true;
         print("Level finished!");
         movement.enabled = false;
         foreach (GameObject obj in playerUI)
         {
             obj.SetActive(false);
         }
+    }
+
+    public void PlayerDead()
+    {
+        deadText.SetActive(true);
+        print("You died!");
+        movement.enabled = false;
+        foreach (GameObject obj in playerUI)
+        {
+            obj.SetActive(false);
+        }
+        GameObject.Find("free_sword").SetActive(false);
     }
 
 
