@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
 
     public GameObject endText;
     public GameObject deadText;
     public GameObject Player;
+    public GameObject RestartButton;
 
     private GridMove2 movement;
     private GameObject[] playerUI;
@@ -45,6 +47,13 @@ public class GameManager : MonoBehaviour {
             obj.SetActive(false);
         }
         GameObject.Find("free_sword").SetActive(false);
+        RestartButton.SetActive(true);
+    }
+
+    public void RestartGame()
+    {
+        print("Button pressed!");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
 
