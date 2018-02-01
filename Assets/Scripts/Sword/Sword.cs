@@ -33,7 +33,7 @@ public class Sword : MonoBehaviour
             return;
         if (Input.GetMouseButton(0))
         {
-            print("Left click!");
+            //print("Left click!");
             hitType = new HitType(HitType.TopDownHit, Strength);
             anim.SetTrigger("TopDownAttack");
 
@@ -114,7 +114,7 @@ public class Sword : MonoBehaviour
         swordHitSound.Play();
         //Destroy(other.gameObject);
         print("Collision!");
-        if (other.gameObject.GetComponent<IEnemyHitable>() != null)
+        if (other.gameObject.GetComponent<IHitable>() != null)
         {
             coll.enabled = false;
             other.gameObject.SendMessage("OnGetHit", hitType);

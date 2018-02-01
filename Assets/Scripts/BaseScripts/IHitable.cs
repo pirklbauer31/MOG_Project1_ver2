@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IEnemyHitable {
+public interface IHitable {
 
     void OnGetHit (HitType type);
     void Die();
