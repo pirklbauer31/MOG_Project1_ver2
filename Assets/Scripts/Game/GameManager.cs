@@ -10,11 +10,12 @@ public class GameManager : MonoBehaviour {
     public GameObject deadText;
     public GameObject Player;
     public GameObject RestartButton;
-
+    Subscription<PlayerDead> notificationToken;
     private GameObject[] playerUI;
 
 	// Use this for initialization
 	void Start () {
+        notificationToken=EventAggregator.SingletionAggregator.Subscribe<PlayerDead>(this.PlayerDead);
         playerUI = GameObject.FindGameObjectsWithTag("PlayerUI");
 
 	}
@@ -34,7 +35,7 @@ public class GameManager : MonoBehaviour {
         }
     }
 
-    public void PlayerDead()
+    public void PlayerDead(PlayerDead d)
     {
         deadText.SetActive(true);
         print("You died!");

@@ -13,7 +13,8 @@ public class PlayerManager : MonoBehaviour,IHitable {
         get { return health; }
         set
         {
-            health = value;
+            health = (value < 0) ? 0 : value;
+            EventAggregator.SingletionAggregator.Publish<HealthUpdate>(new HealthUpdate { Health=health });
             if (value <= 0)
                 Die();
         }
@@ -21,8 +22,8 @@ public class PlayerManager : MonoBehaviour,IHitable {
 
     // Use this for initialization
     void Start () {
-		
-	}
+        EventAggregator.SingletionAggregator.Publish<HealthUpdate>(new HealthUpdate { Health = health });
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -70,7 +71,7 @@ public class PlayerManager : MonoBehaviour,IHitable {
         }
         if (hasHit)
         {
-            Health = Health - criticalBonus * damage * (type.Strength / Defense);
+            Health = (int)((double)Health - (double)criticalBonus * (double)damage * ((double)type.Strength / (double)Defense));
             //animator.SetTrigger("damage");
             hasHit = false;
         }
@@ -78,6 +79,7 @@ public class PlayerManager : MonoBehaviour,IHitable {
 
     public void Die()
     {
+        EventAggregator.SingletionAggregator.Publish<PlayerDead>(new PlayerDead() { Dead=true});
         //throw new System.NotImplementedException();
     }
 }

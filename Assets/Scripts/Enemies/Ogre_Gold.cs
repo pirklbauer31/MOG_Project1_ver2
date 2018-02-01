@@ -112,8 +112,8 @@ public class Ogre_Gold : MonoBehaviour, IHitable {
     public void Die()
     {
         EventAggregator.SingletionAggregator.UnSbscribe(notificationToken);
-        GetComponent<CapsuleCollider>().enabled = false;
-        GetComponent<BoxCollider>().enabled = false;
+        //GetComponent<CapsuleCollider>().enabled = false;
+        //GetComponent<BoxCollider>().enabled = false;
         deathSound.Play();
         animator.SetTrigger("dead");
         //Destroy(gameObject);

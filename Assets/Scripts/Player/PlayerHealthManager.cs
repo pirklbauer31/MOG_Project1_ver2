@@ -5,36 +5,16 @@ using UnityEngine.UI;
 
 public class PlayerHealthManager : MonoBehaviour {
 
-    public int playerHealth = 100;
 
     private Text playerHPText;
-
-    private GameManager gameManager;
+    Subscription<HealthUpdate> notificationToken;
 
     // Use this for initialization
     void Start () {
+
+        notificationToken = EventAggregator.SingletionAggregator.Subscribe<HealthUpdate>(this.updateHealth);
         playerHPText = GetComponent<Text>();
-
-        GameObject gameControllerObject = GameObject.FindGameObjectWithTag("GameController");
-        if (gameControllerObject != null)
-        {
-            gameManager = gameControllerObject.GetComponent<GameManager>();
-        }
-        if (gameManager == null)
-        {
-            Debug.Log("Cannot find 'GameController' script");
-        }
     }
-	
-	// Update is called once per frame
-	void Update () {
-        playerHPText.text = playerHealth.ToString();
-
-        if (playerHealth <= 0)
-        {
-            gameManager.PlayerDead();
-        }
-	}
-
+    public void updateHealth(HealthUpdate u) { playerHPText.text = u.Health.ToString(); }
 
 }
