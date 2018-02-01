@@ -11,12 +11,10 @@ public class GameManager : MonoBehaviour {
     public GameObject Player;
     public GameObject RestartButton;
 
-    private GridMove2 movement;
     private GameObject[] playerUI;
 
 	// Use this for initialization
 	void Start () {
-        movement = Player.GetComponent<GridMove2>();
         playerUI = GameObject.FindGameObjectsWithTag("PlayerUI");
 
 	}
@@ -30,7 +28,6 @@ public class GameManager : MonoBehaviour {
     {
         endText.SetActive(true);
         print("Level finished!");
-        movement.enabled = false;
         foreach (GameObject obj in playerUI)
         {
             obj.SetActive(false);
@@ -41,7 +38,6 @@ public class GameManager : MonoBehaviour {
     {
         deadText.SetActive(true);
         print("You died!");
-        movement.enabled = false;
         foreach (GameObject obj in playerUI)
         {
             obj.SetActive(false);

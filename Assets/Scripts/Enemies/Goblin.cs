@@ -18,7 +18,7 @@ public class Goblin : MonoBehaviour, IHitable
         set {
             health = value;
             print("Current Health: "+health);
-            if (value <= 0&&!dead)
+            if (value <= 0 &&! dead)
                 Die();
         }
     }
@@ -100,8 +100,8 @@ public class Goblin : MonoBehaviour, IHitable
     {
         dead = true;
         EventAggregator.SingletionAggregator.UnSbscribe(notificationToken);
-        GetComponent<CapsuleCollider>().enabled = false;
-        GetComponent<BoxCollider>().enabled = false;
+        //GetComponent<CapsuleCollider>().enabled = false;
+        //GetComponent<BoxCollider>().enabled = false;
         deathSound.Play();
         animator.SetTrigger("dead");
         //Destroy(gameObject);
