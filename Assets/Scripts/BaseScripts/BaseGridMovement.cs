@@ -1,12 +1,36 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class GridMove2 : MonoBehaviour {
+public class BaseGridMovement : MonoBehaviour {
 
+    /**
+     * If true, the Object publishes it's position
+     */
+    public bool Publisher = false;
     private bool isMoving = false;
-    private float cellSize = 0.9f;
+    /**
+     * GridMove Instances of the same group doesn't notice each others movements
+     */
+    public string GroupName = "DEFAULT";
+
+    private Vector3 previousPosition = new Vector3();
+
+    public bool IsMoving
+    {
+        get
+        {
+            return isMoving;
+        }
+        set
+        {
+            isMoving = value;
+            if (!value && Publisher)
+                if (!previousPosition.Equals(transform.position))
+                    EventAggregator.SingletionAggregator.Publish(new MovementNotification() { Group = GroupName, Position = transform.position });
+        }
+    }
+
+    public static float cellSize = 0.9f;
     public float WalkSpeed = 5.0f;
     public float TurnSpeed = 3.5f;
     private AudioSource walkingSound;
@@ -17,82 +41,32 @@ public class GridMove2 : MonoBehaviour {
         walkingSound = GetComponent<AudioSource>();
     }
 
-    public void movementLock(int state) {
-        isMoving = (state == 1);
+    public void movementLock(int state)
+    {
+        IsMoving = (state == 1);
     }
 
-    public void doMovement(string control)
+    public IEnumerator MoveForward()
     {
-        if (isMoving)
-            return;
-        else
-        {
-            if (control == "forward")
-            {
-                StartCoroutine(MoveForward());
-            }
-            else if (control == "backward")
-            {
-                StartCoroutine(MoveBackward());
-            }
-            else if (control == "left")
-            {
-                StartCoroutine(RotateLeft());
-            }
-            else if (control == "right")
-            {
-                StartCoroutine(RotateRight());
-            }
-        }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (isMoving)
-            return;
-        else
-        {
-            if (Input.GetKeyUp("w") )
-            {
-                StartCoroutine(MoveForward());
-            }
-            if (Input.GetKeyUp("s"))
-            {
-                StartCoroutine(MoveBackward());
-            }
-            if (Input.GetKeyUp("a"))
-            {
-                StartCoroutine(RotateLeft());
-            }
-            if (Input.GetKeyUp("d"))
-            {
-                StartCoroutine(RotateRight());
-            }
-        }
-
-    }
-
-    IEnumerator MoveForward()
-    {
-        isMoving = true;
+        IsMoving = true;
         Vector3 newPos = transform.position + transform.TransformDirection(Vector3.forward * cellSize);
         Collider[] hitColliders = Physics.OverlapSphere(newPos, 0.1f);
-        if (hitColliders.Length == 0) {
+        if (hitColliders.Length == 0)
+        {
             walkingSound.Play();
-            for (float t=0f;t < 1f; t+= Time.deltaTime * (WalkSpeed / cellSize))
+            for (float t = 0f; t < 1f; t += Time.deltaTime * (WalkSpeed / cellSize))
             {
                 transform.position = Vector3.Lerp(transform.position, newPos, t);
                 yield return new WaitForSeconds(0);
             }
             transform.position = newPos;
         }
-        isMoving = false;
+        IsMoving = false;
     }
 
-    IEnumerator MoveBackward()
+    public IEnumerator MoveBackward()
     {
-        isMoving = true;
+        IsMoving = true;
         Vector3 newPos = transform.position + transform.TransformDirection(Vector3.forward * -cellSize);
         Collider[] hitColliders = Physics.OverlapSphere(newPos, 0.1f);
         if (hitColliders.Length == 0)
@@ -105,12 +79,12 @@ public class GridMove2 : MonoBehaviour {
             }
             transform.position = newPos;
         }
-        isMoving = false;
+        IsMoving = false;
     }
 
-    IEnumerator RotateLeft()
+    public IEnumerator RotateLeft()
     {
-        isMoving = true;
+        IsMoving = true;
         var oldRotation = transform.rotation;
         transform.Rotate(0, -90, 0);
         var NewRotation = transform.rotation;
@@ -121,12 +95,12 @@ public class GridMove2 : MonoBehaviour {
             yield return new WaitForSeconds(0);
         }
         transform.rotation = NewRotation;
-        isMoving = false;
+        IsMoving = false;
     }
 
-    IEnumerator RotateRight()
+    public IEnumerator RotateRight()
     {
-        isMoving = true;
+        IsMoving = true;
         var oldRotation = transform.rotation;
         transform.Rotate(0, 90, 0);
         var NewRotation = transform.rotation;
@@ -137,7 +111,6 @@ public class GridMove2 : MonoBehaviour {
             yield return new WaitForSeconds(0);
         }
         transform.rotation = NewRotation;
-        isMoving = false;
+        IsMoving = false;
     }
-
 }
