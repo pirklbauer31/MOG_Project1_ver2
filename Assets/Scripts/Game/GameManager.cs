@@ -33,6 +33,8 @@ public class GameManager : MonoBehaviour {
         {
             obj.SetActive(false);
         }
+        GameObject.Find("free_sword").SetActive(false);
+        RestartButton.SetActive(true);
     }
 
     public void PlayerDead(PlayerDead d)

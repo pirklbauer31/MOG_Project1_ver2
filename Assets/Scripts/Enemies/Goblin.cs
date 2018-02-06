@@ -6,6 +6,7 @@ public class Goblin : MonoBehaviour, IHitable
     private Animator animator;
     private AudioSource[] goblinSounds;
     private AudioSource deathSound;
+    private AudioSource painSound;
     private AIMovement movement;
     private bool dead;
     private Boolean enemyInSight;
@@ -31,6 +32,7 @@ public class Goblin : MonoBehaviour, IHitable
         goblinSounds = GetComponents<AudioSource>();
         movement = GetComponent<AIMovement>();
         deathSound = goblinSounds[0];
+        painSound = goblinSounds[1];
     }
 
     // Update is called once per frame
@@ -71,6 +73,7 @@ public class Goblin : MonoBehaviour, IHitable
         {
             Health = Health - criticalBonus * damage * (type.Strength / Defense);
             animator.SetTrigger("damage");
+            painSound.Play();
             hasHit = false;
         }
     }

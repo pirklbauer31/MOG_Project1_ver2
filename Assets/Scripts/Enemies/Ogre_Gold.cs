@@ -9,6 +9,7 @@ public class Ogre_Gold : MonoBehaviour, IHitable {
     private Animator animator;
     private AudioSource[] trollSounds;
     private AudioSource deathSound;
+    private AudioSource painSound;
     Subscription<MovementNotification> notificationToken;
     private Boolean enemyInSight;
     private AIMovement movement;
@@ -35,6 +36,7 @@ public class Ogre_Gold : MonoBehaviour, IHitable {
         movement = GetComponent<AIMovement>();
 		trollSounds = GetComponents<AudioSource>();
         deathSound = trollSounds[0];
+        painSound = trollSounds[1];
     }
 	
 	// Update is called once per frame
@@ -74,6 +76,7 @@ public class Ogre_Gold : MonoBehaviour, IHitable {
         {
             Health = Health - criticalBonus * damage * (type.Strength / Defense);
             animator.SetTrigger("damage");
+            painSound.Play();
             hasHit = false;
         }
     }
