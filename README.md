@@ -30,8 +30,12 @@ The Scene is structured as follows:
 
 ## Responsibilities of Project Team Members
 - Kevin Pirklbauer
-   - 
+   - Creation of game prototype
+   - Map design & enemy placement
+   - Gameplay design / implementation
 - Johannes Mayrhofer
+   - Animations & Textures
+   - Movement & Fighting Mechanics
 
 ## Download Link for Android APK
 The APK for the android version of the game can be downloaded at: https://drive.google.com/open?id=1xr1VdxSMcn7TFcwc3RHG3SENdLIG8XaU
