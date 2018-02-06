@@ -31,7 +31,7 @@ public class Sword : MonoBehaviour
     {
         if (isHitting)
             return;
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButton(0) && SystemInfo.deviceType == DeviceType.Desktop)
         {
             //print("Left click!");
             hitType = new HitType(HitType.TopDownHit, Strength);
